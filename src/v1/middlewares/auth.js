@@ -1,25 +1,43 @@
 import { config } from "../../../config/config.js"
 import jwt from "jsonwebtoken";
+import userModel from "../models/schema.js";
 
-export function verifyToken(req, res, next){
+export async function verifyToken(req, res, next) {
+    try {
+        const token = req.headers.authorization.split(" ")[1];
 
-    const token = req.headers.authorization.split(" ")[1];
+        req.user = null;
 
-    req.user = null;
+        if (token) {
+            try {
+                // console.log(Buffer.byteLength(token, "utf8"));
+                const decoded = jwt.verify(token, config.JWT_KEY);
 
-    if(token){
-        try{
-            const decoded = jwt.verify(token, config.JWT_KEY);
-            req.user = decoded;
-        }
-        catch(error){
-            console.log(error);
+                const user = await userModel.findById(decoded.sub);
+                if (!user) return res.status(404).json({ message: "No valid user found !" });
+
+                //verify token version
+                if (user.accessVersion !== decoded.accessVersion)
+                    return res.status(401).json({
+                        message: "You are not authorized !",
+                        err: "Token version out of date"
+                    });
+
+                req.user = decoded;
+                next();
+            }
+            catch (error) {
+                console.log(error);
+                return res.status(401).json({ message: "You are not authorized !" });
+            }
         }
     }
-
-    next();
+    catch (error) {
+        console.log(error);
+        return res.status(401).json({ message: "Authorization has some error !" });
+    }
 }
 
-export function generateToken(payload, expiry){
+export function generateToken(payload, expiry) {
     return jwt.sign(payload, config.JWT_KEY, { expiresIn: `${expiry}` });
 }

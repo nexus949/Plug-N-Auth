@@ -1,5 +1,5 @@
 {
-  "name": "auth-lime",
+  "name": "plug-n-auth",
   "version": "1.0.0",
   "description": "Simple and Stateless Authentication API",
   "main": "src/server.js",

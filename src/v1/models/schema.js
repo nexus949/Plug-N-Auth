@@ -2,15 +2,14 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
 
-    userEmail:{
+    userEmail: {
         type: String,
         required: [true, "Email is required !"],
-        unique: true,
         trim: true,
         lowercase: true
     },
 
-    password:{
+    password: {
         type: String,
         required: [true, "Password is required !"]
     },
@@ -21,7 +20,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Service Name is required !"],
         trim: true,
-        default: "auth-lime"
+        default: "plug-n-auth"
     },
 
     //breadcrums 🍞 ! Might implement as a later feature !
@@ -29,39 +28,49 @@ const userSchema = new mongoose.Schema({
     //     type: String,
     //     required: false,
     //     unique: true,
-    //     trim: true
+    //     trim: true,
+    //     default: null
     // },
 
     //breadcrums 🍞 ! Might implement as a later feature !
     // phone:{
     //     type: Number,
-    //     required: false
+    //     required: false,
+    //     default: null
     // },
 
-    firstName:{
+    firstName: {
         type: String,
         required: false,
-        trim: true
+        trim: true,
+        default: null
     },
 
-    lastName:{
+    lastName: {
         type: String,
         required: false,
-        trim: true
+        trim: true,
+        default: null
     },
 
-    role:{
+    role: {
         type: String,
         required: false,
         enum: ["admin", "user", "guest"],
         default: "user"
     },
 
-    createdOn:{
+    createdOn: {
         type: Date,
         required: false,
         default: Date.now,
         immutable: true
+    },
+
+    accessVersion:{
+        type: Number,
+        required: true,
+        default: 1
     },
 
     //breadcrums 🍞 ! Might implement as a later feature !
@@ -79,7 +88,10 @@ const userSchema = new mongoose.Schema({
 });
 
 //create an index that ensures the combination of serviceName and userEmail is unique -> One email per service !
-userSchema.index({ serviceName: 1, userEmail: 1 }, { unique: true });
+userSchema.index({ userEmail: 1, serviceName: 1 }, { unique: true });
+
+//index for more efficieny on the id + serviceName queries
+userSchema.index({ _id: 1, serviceName: 1}, { unique: true });
 
 const userModel = mongoose.model("auth_user", userSchema);
 
