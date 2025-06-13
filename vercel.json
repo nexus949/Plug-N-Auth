@@ -1,9 +1,0 @@
-{
-    "version": 2,
-    "routes": [
-        {
-            "src": "/v1/(.*)",
-            "dest": "src/server.js"
-        }
-    ]
-}

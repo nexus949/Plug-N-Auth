@@ -4,6 +4,7 @@ import userModel from "../models/schema.js";
 
 export async function verifyToken(req, res, next) {
     try {
+        if (!req.headers.authorization) throw new Error("No valid Bearer Token in auth header !");
         const token = req.headers.authorization.split(" ")[1];
 
         req.user = null;
@@ -34,7 +35,10 @@ export async function verifyToken(req, res, next) {
     }
     catch (error) {
         console.log(error);
-        return res.status(401).json({ message: "Authorization has some error !" });
+        return res.status(401).json({
+            message: "Error Authorizing !",
+            err: error.message
+        });
     }
 }
 
