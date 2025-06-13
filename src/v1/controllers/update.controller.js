@@ -10,6 +10,7 @@ export async function update(req, res) {
         const serviceName = req.user.service; //get service name from req.user header
 
         if (!updateData) return res.status(400).json({ message: "No Data recieved that can be updated !" });
+        if(!updateData.password) return res.status(401).json({ message: "Password is required !" });
 
         //find user
         let user = await userModel.findOne({ _id: user_id, serviceName: serviceName });
