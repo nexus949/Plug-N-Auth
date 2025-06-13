@@ -1,7 +1,7 @@
 import { config } from "../config/config.js"
 import mongoose from "mongoose";
 
-const dbURL = 'mongodb://localhost:27017/auth-lime';
+const dbURL = 'mongodb://localhost:27017/plug-n-auth';
 mongoose.connect(config.DB_URL || dbURL);
 
 let db = mongoose.connection;
