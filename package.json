@@ -1,6 +1,6 @@
 {
   "name": "plug-n-auth",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple and Stateless Authentication API",
   "main": "src/server.js",
   "type": "module",
