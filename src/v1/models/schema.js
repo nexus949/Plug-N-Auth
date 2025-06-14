@@ -91,7 +91,7 @@ const userSchema = new mongoose.Schema({
 userSchema.index({ userEmail: 1, serviceName: 1 }, { unique: true });
 
 //index for more efficieny on the id + serviceName queries
-userSchema.index({ _id: 1, serviceName: 1}, { unique: true });
+userSchema.index({ _id: 1, serviceName: 1 }, { unique: true });
 
 const userModel = mongoose.model("auth_user", userSchema);
 
