@@ -1,5 +1,5 @@
 # Plug-N-Auth
-<img src="https://cdn.simpleicons.org/javascript" width="30" height="30" /> &nbsp;<img src="https://cdn.simpleicons.org/nodedotjs" width="30" height="30" /> &nbsp;<img src="https://cdn.simpleicons.org/express" width="30" height="30" /> &nbsp;<img src="https://cdn.simpleicons.org/mongodb" width="30" height="30" /> &nbsp;<img src="https://cdn.simpleicons.org/jsonwebtokens" width="30" height="30" />
+<img src="https://cdn.simpleicons.org/javascript" width="30" height="30" /> &nbsp;&nbsp;&nbsp;<img src="https://cdn.simpleicons.org/nodedotjs" width="30" height="30" /> &nbsp;&nbsp;&nbsp;<img src="https://cdn.simpleicons.org/express/999999" width="30" height="30" /> &nbsp;&nbsp;&nbsp;<img src="https://cdn.simpleicons.org/mongodb" width="30" height="30" /> &nbsp;&nbsp;&nbsp;<img src="https://cdn.simpleicons.org/jsonwebtokens/999999" width="30" height="30" />
 
 
 ## Overview
@@ -175,6 +175,7 @@ Each endpoint expects specific fields in the request body or headers. This secti
 
 - [Microsoft Copilot ↗](https://copilot.microsoft.com/)
 
+---
 
 ### 🤝🏼 Connect with Me
 
